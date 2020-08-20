@@ -1,0 +1,23 @@
+import java.math.BigDecimal
+import java.math.RoundingMode
+
+fun main() {
+    //List of times for full planetary rotation (Corresponding to planetList
+    val hoursPlanets = listOf(1408, 5832, 24, 25, 10, 11, 17, 16)
+    val planetList = listOf("Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune")
+    //Pre-input message
+    println("How many days would you like to calculate for?")
+    //sets daysPassed to the number value of user input
+    val daysPassed = readLine()!!.toDouble()
+    //multiplies hoursPlanets by 24 to get days and divides that number by daysPassed
+    val daysPlanets = (hoursPlanets.map { pair ->
+        BigDecimal(
+            (24.toDouble() / pair.toDouble() * daysPassed).toDouble())
+            //RoundingMode HAVE_EVEN rounds to the nearest decimal place set by setScale
+            .setScale(5, RoundingMode.HALF_EVEN)
+    })
+     println(planetList.zip(daysPlanets).toString())
+}
+
+//Outputs the amount of rotations (Days) pass on each planet for the user's input of earth days
+//Might change the user input over to hours as I progress farther
